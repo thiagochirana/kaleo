@@ -1,4 +1,4 @@
-class AddKaleoFieldsTo<%= @table_name.camelize %> < ActiveRecord::Migration[7.0]
+class KaleoAddFieldsTo<%= @table_name.camelize %> < ActiveRecord::Migration[7.0]
   def change
     add_column :<%= @table_name %>, :invitation_token, :string
     add_column :<%= @table_name %>, :invited_at, :datetime
