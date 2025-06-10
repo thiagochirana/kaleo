@@ -10,7 +10,7 @@ module Kaleo
       def create_migration_file
         table_name = resolve_table_name
         migration_template 'add_kaleo_fields.rb.erb',
-                           "db/migrate/#{next_migration_number}_add_kaleo_fields_to_#{table_name}.rb", {
+                           "db/migrate/#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_add_kaleo_fields_to_#{table_name}.rb", {
                              assigns: { table_name: table_name }
                            }
       end
@@ -20,10 +20,6 @@ module Kaleo
       end
 
       private
-
-      def self.next_migration_number
-        Time.now.utc.strftime('%Y%m%d%H%M%S')
-      end
 
       def resolve_table_name
         configured = Kaleo.configuration.user_class
