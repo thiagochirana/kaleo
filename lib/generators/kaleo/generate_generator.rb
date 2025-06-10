@@ -8,11 +8,9 @@ module Kaleo
       source_root File.expand_path('templates', __dir__)
 
       def create_migration_file
-        table_name = resolve_table_name
+        @table_name = resolve_table_name
         migration_template 'add_kaleo_fields.rb.erb',
-                           "db/migrate/#{self.class.next_migration_number('db/migrate')}_add_kaleo_fields_to_#{table_name}.rb", {
-                             assigns: { table_name: table_name }
-                           }
+                           "db/migrate/add_kaleo_fields_to_#{@table_name}.rb"
       end
 
       def self.next_migration_number(dirname)
