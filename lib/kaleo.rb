@@ -3,6 +3,7 @@
 require_relative 'kaleo/version'
 require_relative 'kaleo/configuration'
 require_relative 'kaleo/railtie'
+require_relative 'kaleo/routes'
 
 module Kaleo
   class << self

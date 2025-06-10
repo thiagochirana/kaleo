@@ -18,7 +18,15 @@ module Kaleo
       end
 
       def copy_mailer_views
-        directory 'views', 'app/views'
+        directory 'views/kaleo/invitation_mailer', 'app/views/kaleo/invitation_mailer'
+      end
+
+      def show_customization_message
+        say("\nKaleo instalado com sucesso!\n", :green)
+        say('Adicione a seguinte linha ao seu config/routes.rb:', :white)
+        say("\n\tkaleo_invites_for #{Kaleo.configuration.user_class}\n", :yellow)
+        say('\nSe quiser customizar o controller e as views de convite, execute:', :white)
+        say("\n\n\trails g kaleo:invitations\n", :yellow)
       end
 
       private
