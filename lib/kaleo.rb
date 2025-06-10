@@ -4,6 +4,7 @@ require_relative 'kaleo/version'
 require_relative 'kaleo/configuration'
 require_relative 'kaleo/railtie'
 require_relative 'kaleo/routes'
+require_relative 'kaleo/invitation_mailer'
 
 module Kaleo
   class << self
