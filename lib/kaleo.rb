@@ -1,8 +1,24 @@
 # frozen_string_literal: true
 
-require_relative "kaleo/version"
+require_relative 'kaleo/version'
+require_relative 'kaleo/configuration'
 
 module Kaleo
-  class Error < StandardError; end
-  # Your code goes here...
+  class << self
+    attr_accessor :configuration
+
+    def user_class
+      cls = configuration.user_class
+
+      raise ArgumentError, 'config.user_class precisa ser String (classe ou nome da tabela)' unless cls.is_a?(String)
+
+      begin
+        cls.constantize
+      rescue NameError
+        Class.new(ActiveRecord::Base) do
+          self.table_name = cls
+        end
+      end
+    end
+  end
 end
