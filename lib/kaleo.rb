@@ -2,10 +2,19 @@
 
 require_relative 'kaleo/version'
 require_relative 'kaleo/configuration'
+require_relative 'kaleo/railtie'
 
 module Kaleo
   class << self
     attr_accessor :configuration
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield(configuration)
+    end
 
     def user_class
       cls = configuration.user_class
