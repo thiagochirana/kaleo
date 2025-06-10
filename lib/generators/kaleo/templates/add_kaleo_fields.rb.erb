@@ -1,15 +1,9 @@
 class AddKaleoFieldsTo<%= @table_name.camelize %> < ActiveRecord::Migration[7.0]
-  def up
+  def change
     add_column :<%= @table_name %>, :invitation_token, :string
     add_column :<%= @table_name %>, :invited_at, :datetime
+    add_column :<%= @table_name %>, :invite_expires_at, :datetime
     add_column :<%= @table_name %>, :trial_ends_at, :datetime
     add_index  :<%= @table_name %>, :invitation_token, unique: true
-  end
-
-  def down
-    remove_index  :<%= @table_name %>, :invitation_token
-    remove_column :<%= @table_name %>, :trial_ends_at
-    remove_column :<%= @table_name %>, :invited_atz
-    remove_column :<%= @table_name %>, :invitation_token
   end
 end

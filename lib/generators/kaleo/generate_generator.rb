@@ -10,7 +10,7 @@ module Kaleo
       def create_migration_file
         @table_name = resolve_table_name
         migration_template 'add_kaleo_fields.rb.erb',
-                           "db/migrate/add_kaleo_fields_to_#{@table_name}.rb"
+                           "db/migrate/kaleo_add_fields_to_#{@table_name}.rb"
       end
 
       def self.next_migration_number(dirname)
@@ -18,7 +18,7 @@ module Kaleo
       end
 
       def copy_mailer_views
-        directory 'views', 'app/views/kaleo/invitation_mailer'
+        directory 'views', 'app/views'
       end
 
       private
