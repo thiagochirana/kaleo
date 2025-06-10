@@ -19,15 +19,11 @@ module Kaleo
     def user_class
       cls = configuration.user_class
 
-      raise ArgumentError, 'config.user_class precisa ser String (classe ou nome da tabela)' unless cls.is_a?(String)
+      return cls if cls.is_a?(Class)
 
-      begin
-        cls.constantize
-      rescue NameError
-        Class.new(ActiveRecord::Base) do
-          self.table_name = cls
-        end
-      end
+      raise ArgumentError, 'config.user_class precisa ser a Classe que referencia User' unless cls.is_a?(String)
+
+      cls.constantize
     end
   end
 end
