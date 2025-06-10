@@ -10,9 +10,13 @@ module Kaleo
       def create_migration_file
         table_name = resolve_table_name
         migration_template 'add_kaleo_fields.rb.erb',
-                           "db/migrate/#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_add_kaleo_fields_to_#{table_name}.rb", {
+                           "db/migrate/#{self.class.next_migration_number('db/migrate')}_add_kaleo_fields_to_#{table_name}.rb", {
                              assigns: { table_name: table_name }
                            }
+      end
+
+      def self.next_migration_number(dirname)
+        Time.now.utc.strftime('%Y%m%d%H%M%S')
       end
 
       def copy_mailer_views
