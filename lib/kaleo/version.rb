@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Kaleo
-  VERSION = "0.1.6.4"
+  VERSION = "0.1.6.5"
 end
