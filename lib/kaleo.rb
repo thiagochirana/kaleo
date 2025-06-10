@@ -17,6 +17,23 @@ module Kaleo
       yield(configuration)
     end
 
+    def invite_user(user)
+      token = SecureRandom.hex(10)
+
+      user.assign_attributes(
+        invitation_token: token,
+        invited_at: Time.current,
+        invite_expires_at: Time.current + configuration.invitation_valid_for
+      )
+
+      if user.save
+        Kaleo::InvitationMailer.invite(user).deliver_later
+        true
+      else
+        false
+      end
+    end
+
     def user_class
       cls = configuration.user_class
 
