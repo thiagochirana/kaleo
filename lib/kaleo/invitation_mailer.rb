@@ -1,5 +1,5 @@
 module Kaleo
-  class InvitationMailer < ApplicationMailer
+  class InvitationMailer < ::ApplicationMailer
     def invite(user)
       @user = user
       @accept_url = kaleo_invite_accept_url(token: user.invitation_token)

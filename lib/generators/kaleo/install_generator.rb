@@ -21,6 +21,10 @@ module Kaleo
         directory 'views/kaleo/invitation_mailer', 'app/views/kaleo/invitation_mailer'
       end
 
+      def copy_mailers
+        directory 'mailers/kaleo', 'app/mailers/kaleo'
+      end
+
       def show_customization_message
         say("\nKaleo instalado com sucesso!\n", :green)
         say('Adicione a seguinte linha ao seu config/routes.rb:', :white)
